@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    ##------------------------------------- STORE
     public function store(CommentRequest $request)
     {
         $data = $request->validated();
@@ -15,6 +16,7 @@ class CommentController extends Controller
         return back()->with('CommentStatus', 'comment uploaded successfully!');
     }
 
+    ##------------------------------------- SHOW
     public function show(Comment $comment)
     {
         $commentData = Comment::get();

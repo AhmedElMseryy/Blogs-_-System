@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Helpers\ApiResponse;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class CommentRequest extends FormRequest
 {
@@ -13,6 +16,16 @@ class CommentRequest extends FormRequest
     {
         return true;
     }
+
+    ##--------------------------------------------- API VALIDATION ERRORS
+    protected function failedValidation(Validator $validator)
+    {
+        if ($this->is('api/*')) {
+            $response = ApiResponse::sendResponse(422, 'Validation Error', $validator->errors());
+            throw new ValidationException($validator, $response);
+        }
+    }
+    ##----------------------------------------------------------------------
 
     /**
      * Get the validation rules that apply to the request.

@@ -17,17 +17,17 @@ Route::controller(ThemeController::class)->name('theme.')->group(function () {
     Route::get('/contact', 'contact')->name('contact');
 });
 
-// SUBSCRIBER STORE ROUTE
+//----------------------------------------------- SUBSCRIBER STORE ROUTE
 Route::post('/subscriber/store', [SubscriberController::class, 'store'])->name('subscriber.store');
 
-// CONTACT STORE ROUTE
+//----------------------------------------------- CONTACT STORE ROUTE
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
-// BLOG ROUTE
+//----------------------------------------------- BLOG ROUTE
 Route::get('/my-blogs', [BlogController::class, 'myBlogs'])->name('blogs.my-blogs');
 Route::resource('blogs', BlogController::class)->except('index');
 
-// COMMENT ROUTE
+//----------------------------------------------- COMMENT ROUTE
 Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
 Route::get('/comment/show', [CommentController::class, 'show'])->name('comment.show');
 
